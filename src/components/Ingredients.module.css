@@ -1,0 +1,28 @@
+.ind{
+    display: flex;
+    box-shadow: 0px 2px 4px rgb(53, 52, 52);
+    padding: 20px;
+    margin-top: 20px;
+    height: 150px;
+    border-radius: 10px;
+    
+}
+
+.mainind{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+}
+.ved{
+    margin-left: 100px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .ved{
+        margin-left: 50px;
+        padding: 0px;
+    }
+}

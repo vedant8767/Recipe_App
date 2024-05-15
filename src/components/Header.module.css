@@ -1,0 +1,19 @@
+.Head{
+    background-color: white;
+    color: rgb(232, 118, 98);
+    font-weight: bolder;
+    text-align: center;
+    align-items: center;
+    height: 35px;
+    font-size: 5vh;
+    margin-top:10px ;
+    max-width: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .Head{
+        height: 50px;
+        margin-top: 1px;
+        width:700px;
+        margin-left: auto;
+    }
+}

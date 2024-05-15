@@ -1,0 +1,25 @@
+.serachbox{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+}
+.serachbox input{
+    margin-left: 50px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    height: 55px;
+    width: 420px;
+    font-size: 3vh;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+@media only screen and (max-width: 600px) {
+    .serachbox{
+        width:300px ;
+    }
+    .serachbox input{
+        width: 100%;
+    }
+  }
