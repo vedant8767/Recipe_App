@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import styles from "./RecipeDetail.module.css"
 import Ingredients from "./Ingredients"
+import Loader from "./Loader"
 
 const URL = "https://api.spoonacular.com/recipes/"
-// const API_KEY = "260bb386e7dc4c8783f055ee4d46bfdd"
 const API_KEY=import.meta.env.VITE_RECIPE_API
 
 export default function RecipeDetail({FoodID}){
@@ -12,15 +12,31 @@ export default function RecipeDetail({FoodID}){
 
     const [isloading,setloading] = useState(true)
 
+    // useEffect(()=>{
+    //     async function fetch_recipe(){
+    //         const res = await fetch(`${URL}${FoodID}/information?apiKey=${API_KEY}`)
+    //         const data = await res.json()
+    //         console.log(data)
+    //         setFoodRecipe(data)
+    //         setloading(false)
+    //     }
+    //     fetch_recipe()
+    // },[FoodID])
+
     useEffect(()=>{
-        async function fetch_recipe(){
-            const res = await fetch(`${URL}${FoodID}/information?apiKey=${API_KEY}`)
-            const data = await res.json()
-            console.log(data)
-            setFoodRecipe(data)
-            setloading(false)
+        const getData = setTimeout(()=>{
+            async function fetch_recipe(){
+                const res = await fetch(`${URL}${FoodID}/information?apiKey=${API_KEY}`)
+                const data = await res.json()
+                console.log(data)
+                setFoodRecipe(data)
+                setloading(false)
+            }
+            fetch_recipe()
+        },500)
+        return()=>{
+            clearTimeout(getData)
         }
-        fetch_recipe()
     },[FoodID])
 
     return(
@@ -46,7 +62,7 @@ export default function RecipeDetail({FoodID}){
             </div>
             <div className={styles.instructions}>
                 <h2>Instructions</h2> 
-                {isloading ? ("Loading") :(foodrecipe.analyzedInstructions[0].steps.map((step)=>(<li key={step.number}>{step.step}</li>)))}
+                {isloading ? (<Loader/>) :(foodrecipe.analyzedInstructions[0].steps.map((step)=>(<li key={step.number}>{step.step}</li>)))}
             </div>
         </div>
     )
