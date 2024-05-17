@@ -10,15 +10,31 @@ export default function Search({foodData,setFoodData}){
     
     const [query,setQuery] = useState("pizza")
     
+    // useEffect(()=>{
+        // async function fetch_data(){
+        //     console.log(query)
+        //     const res = await fetch(`${URL}?query=${query}&apiKey=${API_KEY}`)
+        //     const data = await res.json()
+        //     console.log(data.results)
+        //     setFoodData(data.results)
+        // }
+        // fetch_data()
+    // },[query])
+
     useEffect(()=>{
-        async function fetch_data(){
-            console.log(query)
-            const res = await fetch(`${URL}?query=${query}&apiKey=${API_KEY}`)
-            const data = await res.json()
-            console.log(data.results)
-            setFoodData(data.results)
+        const getData = setTimeout(()=>{
+            async function fetch_data(){
+                console.log(query)
+                const res = await fetch(`${URL}?query=${query}&apiKey=${API_KEY}`)
+                const data = await res.json()
+                console.log(data.results)
+                setFoodData(data.results)
+            }
+            fetch_data()
+        },1000)
+        return()=>{
+            clearTimeout(getData)
         }
-        fetch_data()
     },[query])
     
     return(
